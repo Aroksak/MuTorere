@@ -1,2 +1,3 @@
-# MuTorere
-PettinZoo env for Mu Torere game
+# Mu Torere 
+PettingZoo env for Mu Torere game.
+

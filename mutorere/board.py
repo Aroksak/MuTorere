@@ -68,6 +68,7 @@ class Board:
         if not self.render_on:
             self.screen = pygame.display.set_mode(self.size)
             self.render_on = True
+        pygame.event.pump()
         width, height = self.size
         center = width // 2, height // 2
         self.screen.fill(BACKGROUND_COLOR)
