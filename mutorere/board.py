@@ -67,16 +67,11 @@ class Board:
     def render(self):
         if not self.render_on:
             self.screen = pygame.display.set_mode(self.size)
+            self.render_on = True
         width, height = self.size
         center = width // 2, height // 2
         self.screen.fill(BACKGROUND_COLOR)
         pygame.draw.circle(self.screen, LINE_COLOR, center, BOARD_RADIUS, width=BOARD_LINE_WIDTH)
-        match self.putahi:
-            case Stones.WHITE:
-                pygame.draw.circle(self.screen, WHITE_STONE_COLOR, center, KEWAI_RADIUS, width=0)
-            case Stones.BLACK:
-                pygame.draw.circle(self.screen, BLACK_STONE_COLOR, center, KEWAI_RADIUS, width=0)
-        pygame.draw.circle(self.screen, LINE_COLOR, center, KEWAI_RADIUS, width=SPOT_LINE_WIDTH)
         for i, color in enumerate(self.kewai):
             phi = math.pi / (self.n_kewai // 2) * i
             x = center[0] - int(BOARD_RADIUS * math.sin(phi))
@@ -88,6 +83,12 @@ class Board:
                 case Stones.BLACK:
                     pygame.draw.circle(self.screen, BLACK_STONE_COLOR, (x, y), KEWAI_RADIUS, width=0)
             pygame.draw.circle(self.screen, LINE_COLOR, (x, y), KEWAI_RADIUS, width=SPOT_LINE_WIDTH)
+        match self.putahi:
+            case Stones.WHITE:
+                pygame.draw.circle(self.screen, WHITE_STONE_COLOR, center, KEWAI_RADIUS, width=0)
+            case Stones.BLACK:
+                pygame.draw.circle(self.screen, BLACK_STONE_COLOR, center, KEWAI_RADIUS, width=0)
+        pygame.draw.circle(self.screen, LINE_COLOR, center, KEWAI_RADIUS, width=SPOT_LINE_WIDTH)
         pygame.display.flip()
 
     def close(self):

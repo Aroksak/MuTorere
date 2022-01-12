@@ -29,8 +29,8 @@ class raw_env(AECEnv):
 
         self.action_spaces = {agent: spaces.Discrete(self.n_kewai + 1) for agent in self.possible_agents}
         self.observation_spaces = {agent: spaces.Dict({
-            'observation': spaces.Box(low=0, high=1, shape=(self.n_kewai + 1, 2), dtype=bool),
-            'action_mask': spaces.Box(low=0, high=1, shape=(self.n_kewai + 1,), dtype=bool)
+            'observation': spaces.Box(low=0, high=1, shape=(self.n_kewai + 1, 2), dtype=np.int8),
+            'action_mask': spaces.Box(low=0, high=1, shape=(self.n_kewai + 1,), dtype=np.int8)
         }) for agent in self.possible_agents}
 
         self._cumulative_rewards = {agent: 0 for agent in self.possible_agents}
@@ -67,10 +67,10 @@ class raw_env(AECEnv):
         cur_p_stones = np.equal(flat_board, self.board.agent_stones[cur_player])
         opp_p_stones = np.equal(flat_board, self.board.agent_stones[opp_player])
 
-        observation = np.stack([cur_p_stones, opp_p_stones], axis=-1).astype(bool)
+        observation = np.stack([cur_p_stones, opp_p_stones], axis=-1).astype(np.int8)
         valid_moves = self.board.get_possible_actions(cur_player) if agent == self.agent_selection else []
 
-        action_mask = np.zeros(self.n_kewai + 1, dtype=bool)
+        action_mask = np.zeros(self.n_kewai + 1, dtype=np.int8)
         for i in valid_moves:
             action_mask[i] = 1
 
