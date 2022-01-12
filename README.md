@@ -28,21 +28,21 @@ including render with pygame (see gif above).
 Env supports 2 agents, first is playing white and second is playing black.
 Observation comes in format of gym.spaces.Dict with 2 elements: "observation" and "action_mask".
 
-"observation" is a numpy array of shape (n_kuwai + 1, 2), where [:, 0] is 
+"observation" is a numpy array of shape (n_kewai + 1, 2), where [:, 0] is 
 binary mask for agent's pawns and [:, 1] is binary mask for opponent's pawns.
 
-"action_mask" is a numpy array of shape (n_kuwai + 1) and is binary mask indicating positions of pawns
+"action_mask" is a numpy array of shape (n_kewai + 1) and is binary mask indicating positions of pawns
 agent is able to move in current turn.
 
-Env supports any even number of kuwai with 8 set as default, but note that rendering is not optimized
-for arbitrary number of kuwai.
+Env supports any even number of kewai with 8 set as default, but note that rendering is not optimized
+for arbitrary number of kewai.
 
 ## Q-learning example
 
 qlearning.ipynb is a jupyter notebook with example on using Q-learning technique to learn how to play the game.
 Refer to it to see example on env's API usage.
 
-Q-learning requires estimating Q-values for each of the game states. Game with 8 kuwai has 630 different states,
+Q-learning requires estimating Q-values for each of the game states. Game with 8 kewai has 630 different states,
 but the game is very symmetric, this could be used to our advantage. By using rotations and mirroring I reduced number
 of possible states to 46, and in practice agents use only up to 25.
 
